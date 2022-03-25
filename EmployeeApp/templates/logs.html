@@ -1,0 +1,40 @@
+{% include 'head.html' %}
+
+<div class='container'>
+    {% include 'header.html' %}
+
+    {% comment %} For the number of Logs , display in a table here {% endcomment %}
+    <table class="table container-fluid">
+        <legend><h1>Logs of Uploads</h1></legend><br>
+    <thead>
+        <tr>
+        <th scope="col">Timestamp</th>
+        <th scope="col">Employee records</th>
+        <th scope="col">Status</th>
+        <th scope="col">Errors</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Record starts here-->
+        {% for log in logs %}
+            <tr>
+            <td scope="row">{{ log.timestamps.date}}<br> {{ log.timestamps.time}}</td>
+            <td >{{ log.records }}</td>
+            <td>{{ log.status }}</td>
+            <td>
+                {% if log.errors %}
+                    {{log.errors}}
+                {% else %}
+                    ---
+                {% endif %}
+
+            </td>
+            </tr>
+            {% empty %}
+                <td><h3>No Logs</h3></td>
+        {% endfor %}
+        <!-- ends here -->
+
+    </tbody>
+    </table>
+</div>

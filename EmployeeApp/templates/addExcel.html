@@ -1,0 +1,33 @@
+{% include 'head.html' %}
+
+<div class='container'>
+    {% include 'header.html' %}
+
+    <form method="POST" class="p-2 shadow mb-5"  enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <div id="form-errors">
+                    <strong>{{ message }}</strong>
+                </div>
+            
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        <fieldset>
+            <legend><h1>Add Excel File</h1></legend>
+            {% if error_message %}<p><b>{{ error_message }}</b></p> {% endif %}
+            <div class="form-row row">
+                <div class="col-sm-5 mb-3 form-group">
+                    <label for="addExcel" class="form-label">Choose an Excel File</label>
+                    <input type="file" name="employee_excel_file" class="form-control" id="addExcel">
+                </div>
+            </div>
+        </fieldset>
+
+        <input type="submit" value="Add" class="btn btn-primary col-3">
+    </form>
+</div>
