@@ -31,11 +31,14 @@ def add_employee(request):
 			create_log(
 				get_records=1,
 			)
+			messages.success(request, 'SUCCESSFUL, You added a new Employee !')
 		else:
 			create_log(
 				get_records=0,
 				get_errors=messages.error
 			)
+			messages.error(request, "UNSUCCESSFUL, Couldn't add Employee !")
+			
 	context={
 		"form":form
 	}

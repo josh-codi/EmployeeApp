@@ -64,8 +64,8 @@ def excel_upload(excel_file):
 						date_of_employment 		= date_of_employment.strip("'")
 					
 				except:
-					is_error 			= True
-					error_message		= "Datetime value expected. Please round your dates in column 4 and 5 in quotation marks"
+					is_error 			= False
+					error_message		= ""
 					break
 
 
