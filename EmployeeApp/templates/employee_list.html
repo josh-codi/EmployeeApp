@@ -15,20 +15,59 @@
 
 
 
-<body class="container">
+<body class="container-fluid">
   {% include 'header.html'%}
   <main>
     {% comment %} {% include 'register.html' %} {% endcomment %}
     
-    <section class='row m-b-5'>
+    <!--<section class='row m-b-5'>
       <input type="text" class='col-4' id='search-employer'><button class='btn btn-primary col-2 search-btn'>Search</button>
-    </section><br>
+    </section><br>-->
     
     <h1>All Employee</h1><br>
     <div class="row">
-    {% for employee in employees %}
+
+      <table class="table shadow">
+        <thead>
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Position</th>
+            <th scope="col">Salary($)</th>
+            <th scope="col">Supervisors</th>
+            <th scope="col">Date of Employment</th>
+            <th scope="col">Date of Graduation</th>
+            <th scope="col">Code</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+      
+          <tr>
+            <td>{{employee.first_name}}</td>
+            <td>{{employee.middle_name}}</td>
+            <td>{{employee.position}}</td>
+            <td>{{employee.salary}}</td>
+            <td>
+              <i>
+                {% for supervisor in employee.supervisors.all %}
+                    {{supervisor}},<br>
+                  {% empty %}
+                  None
+                {% endfor %}
+              </i>
+            </td>
+            <td>{{employee.date_of_employment}}</td>
+            <td>{{employee.date_of_graduation}}</td>
+            <td>{{employee.employee_code}}</td>
+          </tr>
+          
+        {% endfor %}
+        </tbody>
+      </table>
+
     
-      <div class="col-sm-6 mb-4">
+      {% comment %} <div class="col-sm-6 mb-4">
         <div class="card shadow">
           <div class="card-body">
             <h4 class="card-title">{{employee.first_name}} {{employee.middle_name}}</h4>
@@ -36,7 +75,7 @@
             <a href="#" class="btn btn-success p-2">Salary: $ {{ employee.salary }}</a><br><br>
     
             <i>
-              {% comment %} Displaying Employee's supervisor, if none display none {% endcomment %}
+              
               Supervisor(s): 
                 {% for supervisor in employee.supervisors.all %}
                   {{supervisor}}
@@ -52,7 +91,7 @@
           </div>
         </div>
       </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
         
     
     

@@ -68,7 +68,9 @@ def excel_upload(excel_file):
 					error_message		= "Datetime value expected. Please round your dates in column 4 and 5 in quotation marks"
 					break
 
+
 				position 				= a_row_value_array[4]
+
 				try:
 					salary 				= int(a_row_value_array[5])
 				except:

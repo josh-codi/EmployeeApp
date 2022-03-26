@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from django.contrib.auth.models import User
 
 from EmployeeApp.models.employee_model import Employee
+from EmployeeApp.managers.upload_logs import create_log
 
 class LoginForm(forms.Form):
 	username = forms.CharField(max_length=100, required=True,
@@ -66,6 +67,7 @@ class EmployeeForm(ModelForm):
 
 	date_of_employment = forms.CharField(max_length=100, required=True,
 				widget=forms.DateInput(attrs={
+					"type":"date",
 					"name":"dateOfEmployment",
 					"class":"form-control",
 					"id":"dateOfEmployment"
@@ -74,15 +76,18 @@ class EmployeeForm(ModelForm):
 
 	date_of_graduation = forms.CharField(max_length=100, required=True,
 				widget=forms.DateInput(attrs={
+					"type":"date",
 					"name":"dateOfGraduation",
 					"class":"form-control",
 					"id":"dateOfGraduation"
 				})
 				)
 	supervisors = forms.ModelMultipleChoiceField(
-		queryset=Employee.objects.all()
+		queryset=Employee.objects.all(),
+		required=False
 		)
 	
 	class Meta:
 		model = Employee
 		fields = ["first_name", "middle_name", "position", "salary", "date_of_employment", "date_of_graduation", "supervisors"]
+

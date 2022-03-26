@@ -8,6 +8,7 @@ from EmployeeApp.utils.excel_upload import excel_upload
 from EmployeeApp.models.employee_model import Employee
 from EmployeeApp.models.logs_model import Log
 from EmployeeApp.forms import EmployeeForm
+from EmployeeApp.managers.upload_logs import create_log
 
 # Create your views here.
 @login_required
@@ -18,24 +19,35 @@ def employee_list(request):
 	}
 	return render(request, 'employee_list.html', context)
 
+
+
 @login_required
 def add_employee(request):
 	form = EmployeeForm()
 	if request.method == "POST":
 		form = EmployeeForm(request.POST)
 		if form.is_valid():
-			employee = form.save()
-
+			form.save()
+			create_log(
+				get_records=1,
+			)
+		else:
+			create_log(
+				get_records=0,
+				get_errors=messages.error
+			)
 	context={
 		"form":form
 	}
 	return render(request, 'addEmployee.html', context)
 
+
+
 @login_required
 def add_excel(request):
 	if request.method == "POST":
 		excel_file     			= request.FILES.get("employee_excel_file")
-		# Getting filename and extension
+		# Getting filename and extension	
 		file_name, extension 	= os.path.splitext(excel_file.name)
 		if '.xlsx' == extension:
 			upload_info = excel_upload(excel_file)
@@ -52,6 +64,9 @@ def add_excel(request):
 			messages.error(request, "Invalid file upload, please upload an excel file")
 			
 	return render(request, 'addExcel.html')
+
+
+
 
 @login_required
 def logs(request):
