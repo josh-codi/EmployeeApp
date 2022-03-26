@@ -32,20 +32,32 @@
             <b>{{ value }}</b>
         {% endfor %}
     {% endif %}
-    <form method='POST' class="form-signin">
-        {% csrf_token %}
-        
+    <div class="container m-auto">
         <br>
-        <h1 class="h3 mb-3 font-weight-normal">Login</h1>
-        <label for="username" class="sr-only">Username</label>
-        {{form.username}}
-        <label for="inputPassword" class="sr-only">Password</label>
-        {{form.password}}
-       <br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        
-    </form>
+        <h1 class="mb-3 font-weight-normal text-primary">Login</h1>
+        <br>
+        <form method='POST' class="form-signin col-6 m-auto">
+            {% csrf_token %}
+                
 
+                <div class="form-group">
+                    <label for="username" class="sr-only "><h4>Username</h4></label>
+                    {{form.username}}
+                    <br>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword" class="sr-only"><h4>Password</h4></label>
+                    {{form.password}}
+                    <br>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+
+                </div>
+        </form>
+    </div>
+    
 
 </body>
 

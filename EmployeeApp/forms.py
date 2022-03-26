@@ -10,7 +10,7 @@ class LoginForm(forms.Form):
 				widget=forms.TextInput(attrs={
 					"placeholder":"Username",
 					 "id":"username",
-					 "class":"form-control",
+					 "class":"form-control col-5",
 					 "placeholder":"Username",
 					 "autofocus":""
 				})
@@ -20,8 +20,9 @@ class LoginForm(forms.Form):
 						required=True,
 						widget=forms.PasswordInput(attrs={
 							"id":"inputPassword", 
-							"class":"form-control",
-							"placeholder":"Password"
+							"class":"form-control col-5",
+							"placeholder":"Password",
+							
 						})
 						)
 	

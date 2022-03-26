@@ -1,5 +1,5 @@
 # Django imports
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import os
@@ -9,6 +9,8 @@ from EmployeeApp.models.employee_model import Employee
 from EmployeeApp.models.logs_model import Log
 from EmployeeApp.forms import EmployeeForm
 from EmployeeApp.managers.upload_logs import create_log
+
+
 
 # Create your views here.
 @login_required
@@ -38,7 +40,7 @@ def add_employee(request):
 				get_errors=messages.error
 			)
 			messages.error(request, "UNSUCCESSFUL, Couldn't add Employee !")
-			
+
 	context={
 		"form":form
 	}
@@ -78,4 +80,5 @@ def logs(request):
 		"logs":logs
 	}
 	return render(request, 'logs.html', context)
+
 

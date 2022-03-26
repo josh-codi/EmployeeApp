@@ -78,23 +78,23 @@ WSGI_APPLICATION = 'InternProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default':{
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get("DB_NAME", "employeeDB"),
-        'USER': os.environ.get('DB_USER', 'root'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'Admin@123'),
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default':{
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ.get("DB_NAME", "employeeDB"),
+#         'USER': os.environ.get('DB_USER', 'root'),
+#         'PASSWORD': os.environ.get('DB_PASSWORD', 'Admin@123'),
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306'
+#     }
+# }
 
 
 
