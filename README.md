@@ -32,8 +32,8 @@ EMPLOYMENT DATA COLLATION APP
 	password: keypass
 
 	7. Attached are the excel files for testing
-			- valid_excel     : Valid Excel file
-			- wrong_file 	  : Invalid excel file
+			- valid_excel					: Valid Excel file
+			- file_instead_of_excel			: file_instead_of_excel
 
 
 - URLS FOR ACCESSING THE WEB APPLICATION
