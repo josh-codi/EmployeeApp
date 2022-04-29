@@ -2,6 +2,7 @@
 
 ## HOW TO RUN THE PROJECT
 `
+  $ docker-compose build
   $ docker-compose up
 `
 

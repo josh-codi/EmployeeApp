@@ -32,7 +32,7 @@ services:
       - "3306"
 
     volumes:
-      - db_1:/var/lib/mysql
+      - internproject_db_1:/var/lib/mysql
 # Names our volume
 volumes:
-  db_1:
+  internproject_db_1:
