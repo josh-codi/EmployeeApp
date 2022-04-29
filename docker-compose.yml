@@ -1,38 +1,27 @@
 version: "3"
 
 services:
-  web:
-    build: .
-    ports:
-      - "8000:8000"
-    command: bash -c "pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py loaddata EmployeeApp/fixtures/admin.json && python manage.py runserver 0.0.0.0:8000"
-    container_name: employee_app
-    volumes:
-      - .:/employee_app
-    
-    environment:
-      - DB_HOST=db
-      - DB_NAME=mysql-test
-      - DB_USER=user
-      - DB_PASS=test
-    
-
   db:
     image: mysql:5.7
-    restart: always
-    environment:
-      - DB_HOST=db
-      - DB_NAME=mysql-test
-      - DB_USER=user
-      - DB_PASS=test
-
     ports:
       - "3306:3306"
-    expose:
-      - "3306"
+    environment:
+      MYSQL_DATABASE: "my-app-db"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "password"
 
+  web:
+    build: .
+    command: bash -c "pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py loaddata EmployeeApp/fixtures/admin.json && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - internproject_db_1:/var/lib/mysql
-# Names our volume
-volumes:
-  internproject_db_1:
+      - .:/my_app_dir
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_NAME: my-app-db
+      DB_USER: root
+      DB_PASS: password
