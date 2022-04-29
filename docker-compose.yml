@@ -1,20 +1,38 @@
-version: "3.8"
+version: "3"
+
 services:
-  app:
+  web:
     build: .
-    volumes:
-      - .:/django
     ports:
-      - 8000:8000
-    image: app:django
-    container_name: django_container
-    command: python manage.py runserver 0.0.0.0:8000
-    depends_on:
-      - db
-  db:
-    image: mysql:8.0
-    environment:
-      MSQL_DATABASE: 'employeeDB'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+      - "8000:8000"
+    command: bash -c "pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py loaddata EmployeeApp/fixtures/admin.json && python manage.py runserver 0.0.0.0:8000"
+    container_name: employee_app
     volumes:
-      - ./data/mysql/db:/var/lib/mysql
+      - .:/employee_app
+    
+    environment:
+      - DB_HOST=db
+      - DB_NAME=mysql-test
+      - DB_USER=user
+      - DB_PASS=test
+    
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - DB_HOST=db
+      - DB_NAME=mysql-test
+      - DB_USER=user
+      - DB_PASS=test
+
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+
+    volumes:
+      - internproject_db_1:/var/lib/mysql
+# Names our volume
+volumes:
+  internproject_db_1:

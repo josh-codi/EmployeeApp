@@ -8,18 +8,17 @@
 
         {% if messages %}
             {% for message in messages %}
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <div id="form-errors">
-                    <strong>{{ message }}</strong>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <div id="form-errors">
+                        <strong>{{ message }}</strong>
+                    </div>
                 </div>
-            
-            </div>
             {% endfor %}
         {% endif %}
 
         <fieldset>
             <legend><h1>Add Excel File</h1></legend>
-            {% if error_message %}<p><b>{{ error_message }}</b></p> {% endif %}
+            {% if error_message %}<p class="text-danger"><b>{{ error_message }}</b></p> {% endif %}
             <div class="form-row row">
                 <div class="col-sm-5 mb-3 form-group">
                     <label for="addExcel" class="form-label">Choose an Excel File</label>

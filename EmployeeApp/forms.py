@@ -9,10 +9,10 @@ class LoginForm(forms.Form):
 	username = forms.CharField(max_length=100, required=True,
 				widget=forms.TextInput(attrs={
 					"placeholder":"Username",
-					 "id":"username",
-					 "class":"form-control col-5",
-					 "placeholder":"Username",
-					 "autofocus":""
+					"id":"username",
+					"class":"form-control col-5",
+					"placeholder":"Username",
+					"autofocus":"" 
 				})
 				)
 	
@@ -91,4 +91,3 @@ class EmployeeForm(ModelForm):
 	class Meta:
 		model = Employee
 		fields = ["first_name", "middle_name", "position", "salary", "date_of_employment", "date_of_graduation", "supervisors"]
-

@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-5snd75ysd(f4t_ee=yt&7dc*y%hgihwxkd-8w(@1$otzs0hj9j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '0.0.0.0']
 
 
 # Application definition
@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'EmployeeApp'
 ]
 
@@ -88,14 +87,13 @@ WSGI_APPLICATION = 'InternProject.wsgi.application'
 DATABASES = {
     'default':{
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get("DB_NAME", "employeeDB"),
-        'USER': os.environ.get('DB_USER', 'root'),
-        'PASSWORD': 'Admin@123',
-        'HOST': '127.0.0.1',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_HOST'),
         'PORT': '3306'
     }
 }
-
 
 
 # Password validation
@@ -135,8 +133,14 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    MEDIA_ROOT
+]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATICFILES_DIR = os.path.join(BASE_DIR, 'static')
