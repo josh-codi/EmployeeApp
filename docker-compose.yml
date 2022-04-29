@@ -6,8 +6,9 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: "my-app-db"
+      MYSQL_DATABASE: "employeeapp_db_1"
       MYSQL_USER: "root"
+      MYSQL_ROOT_USER: "root"
       MYSQL_PASSWORD: "password"
       MYSQL_ROOT_PASSWORD: "password"
 
@@ -21,7 +22,7 @@ services:
     depends_on:
       - db
     environment:
-      DB_HOST: db
-      DB_NAME: my-app-db
-      DB_USER: root
-      DB_PASS: password
+      DB_HOST: "db"
+      DB_NAME: "employeeapp_db_1"
+      DB_USER: "root"
+      DB_PASS: "password"
